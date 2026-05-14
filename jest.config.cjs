@@ -6,8 +6,9 @@ module.exports = {
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   coverageDirectory: "coverage",
   testEnvironment: "node",
+  extensionsToTreatAsEsm: ['.ts'],
   transform: {
-    '.+\\.ts$': 'ts-jest'
+    '^.+\\.ts$': ['ts-jest', { useESM: true }]
   },
 }
 

@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
+        "rootDir": ".",
         "target": "ES2022",
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
@@ -8,7 +9,12 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "allowJs": true
+        "allowJs": true,
+        "isolatedModules": true,
+        "types": [
+            "jest",
+            "node"
+        ]
     },
     "include": [
         "src",
