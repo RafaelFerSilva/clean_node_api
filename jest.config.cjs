@@ -8,7 +8,13 @@ module.exports = {
   testEnvironment: "node",
   extensionsToTreatAsEsm: ['.ts'],
   transform: {
-    '^.+\\.ts$': ['ts-jest', { useESM: true }]
+    '^.+\\.ts$': ['ts-jest', {
+      useESM: true,
+      tsconfig: 'tsconfig.jest.json'
+    }]
   },
+  moduleNameMapper: {
+    '^(\\.\\.\?\\/.+)\\.ts$': '$1',
+    '^(\\.\\.\?\\/.+)\\.js$': '$1'
+  }
 }
-
