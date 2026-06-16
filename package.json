@@ -1,28 +1,33 @@
 {
-  "name": "clean-node-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --passWithNoTests --watch",
-    "test:staged": "jest --passWithNoTests",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.7.0",
-    "eslint": "^9.39.4",
-    "eslint-config-love": "^154.0.0",
-    "git-commit-msg-linter": "^5.0.8",
-    "husky": "^9.1.7",
-    "jest": "^30.4.2",
-    "lint-staged": "^17.0.4",
-    "ts-jest": "^29.4.9",
-    "typescript": "^6.0.3"
-  }
+    "name": "clean-node-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --passWithNoTests --watch",
+        "test:staged": "jest --passWithNoTests",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "prepare": "husky"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "@types/node": "^25.7.0",
+        "eslint": "^9.39.4",
+        "eslint-config-love": "^154.0.0",
+        "eslint-config-prettier": "^10.1.8",
+        "git-commit-msg-linter": "^5.0.8",
+        "husky": "^9.1.7",
+        "jest": "^30.4.2",
+        "lint-staged": "^17.0.4",
+        "prettier": "^3.8.4",
+        "ts-jest": "^29.4.9",
+        "typescript": "^6.0.3"
+    }
 }

@@ -13,18 +13,8 @@
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
         "isolatedModules": true,
-        "types": [
-            "jest",
-            "node"
-        ]
+        "types": ["jest", "node"]
     },
-    "include": [
-        "src",
-        "eslint.config.js",
-        "jest.config.cjs"
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+    "include": ["src", "eslint.config.js", "jest.config.cjs"],
+    "exclude": ["node_modules", "dist"]
 }
