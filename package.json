@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:staged": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "jest --passWithNoTests --watch",
+    "test:staged": "jest --passWithNoTests",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
