@@ -1,9 +1,13 @@
 import type { HttpRequest, HttpResponse, Controller, EmailValidator } from '../protocols/index.ts'
 import { badRequest, serverError } from '../helpers/http-helper.ts'
 import { MissingParamError, InvalidParamError } from '../errors/index.ts'
+import type { AddAccount } from '../../domain/usecases/add-account.ts'
 
 export class SignUpController implements Controller {
-    constructor(private readonly emailValidator: EmailValidator) {}
+    constructor(
+        private readonly emailValidator: EmailValidator,
+        private readonly addAccount: AddAccount,
+    ) {}
 
     handle(httpRequest: HttpRequest): HttpResponse {
         try {
@@ -16,7 +20,7 @@ export class SignUpController implements Controller {
                 }
             }
 
-            const { email, password, passwordConfirmation } = body as Record<string, string>
+            const { name, email, password, passwordConfirmation } = body as Record<string, string>
 
             if (password !== passwordConfirmation) {
                 return badRequest(new InvalidParamError('passwordConfirmation'))
@@ -26,6 +30,8 @@ export class SignUpController implements Controller {
             if (!isValid) {
                 return badRequest(new InvalidParamError('email'))
             }
+
+            this.addAccount.add({ name, email, password })
 
             return {
                 statusCode: 200,
