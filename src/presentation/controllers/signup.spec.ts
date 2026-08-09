@@ -1,20 +1,23 @@
 import { SignUpController } from './signup.ts'
-import type { EmailValidator } from '../protocols/email-validator.ts'
 import { MissingParamError, InvalidParamError, ServerError } from '../errors/index.ts'
+import type { EmailValidator } from '../protocols/index.ts'
 
 interface SutTypes {
     sut: SignUpController
     emailValidatorStub: EmailValidator
 }
 
-class EmailValidatorStub implements EmailValidator {
-    isValid(email: string): boolean {
-        return true
+const makeEmailValidator = (): EmailValidator => {
+    class EmailValidatorStub implements EmailValidator {
+        isValid(email: string): boolean {
+            return true
+        }
     }
+    return new EmailValidatorStub()
 }
 
 const makeSut = (): SutTypes => {
-    const emailValidatorStub = new EmailValidatorStub()
+    const emailValidatorStub = makeEmailValidator()
     const sut = new SignUpController(emailValidatorStub)
     return { sut, emailValidatorStub }
 }
