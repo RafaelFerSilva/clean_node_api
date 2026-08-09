@@ -1,7 +1,12 @@
-import type { HttpRequest, HttpResponse, Controller, EmailValidator } from '../protocols/index.ts'
-import { badRequest, serverError } from '../helpers/http-helper.ts'
-import { MissingParamError, InvalidParamError } from '../errors/index.ts'
-import type { AddAccount } from '../../domain/usecases/add-account.ts'
+import type {
+    HttpRequest,
+    HttpResponse,
+    Controller,
+    EmailValidator,
+    AddAccount,
+} from './signup-protocols.ts'
+import { badRequest, serverError } from '../../helpers/http-helper.ts'
+import { MissingParamError, InvalidParamError } from '../../errors/index.ts'
 
 export class SignUpController implements Controller {
     constructor(
