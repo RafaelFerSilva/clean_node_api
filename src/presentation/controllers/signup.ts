@@ -1,9 +1,8 @@
 import type { HttpRequest, HttpResponse } from '../protocols/http.ts'
-import { MissingParamError } from '../errors/missing-param-error.ts'
 import { badRequest, serverError } from '../helpers/http-helper.ts'
 import type { Controller } from '../protocols/controller.ts'
 import type { EmailValidator } from '../protocols/email-validator.ts'
-import { InvalidParamError } from '../errors/invalid-param-error.ts'
+import { MissingParamError, InvalidParamError } from '../errors/index.ts'
 
 export class SignUpController implements Controller {
     constructor(private readonly emailValidator: EmailValidator) {}
