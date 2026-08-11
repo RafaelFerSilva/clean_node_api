@@ -23,6 +23,7 @@
     "devDependencies": {
         "@types/jest": "^30.0.0",
         "@types/node": "^25.7.0",
+        "@types/validator": "^13.15.10",
         "eslint": "^9.39.4",
         "eslint-config-love": "^154.0.0",
         "eslint-config-prettier": "^10.1.8",
@@ -33,5 +34,8 @@
         "prettier": "^3.8.4",
         "ts-jest": "^29.4.9",
         "typescript": "^6.0.3"
+    },
+    "dependencies": {
+        "validator": "^13.15.35"
     }
 }
