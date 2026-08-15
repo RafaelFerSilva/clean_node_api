@@ -1,6 +1,9 @@
-import type { Encrypter } from '../../protocols/encrypter.ts'
-import type { AddAccount, AddAccountModel } from '../../../domain/usecases/add-account.ts'
-import type { AccountModel } from '../../../domain/models/account.ts'
+import type {
+    Encrypter,
+    AddAccount,
+    AddAccountModel,
+    AccountModel,
+} from './db-add-account-protocols.ts'
 
 export class DbAddAccount implements AddAccount {
     private readonly encrypter: Encrypter

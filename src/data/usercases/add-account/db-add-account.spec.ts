@@ -1,5 +1,5 @@
+import type { Encrypter } from './db-add-account-protocols.ts'
 import { DbAddAccount } from './db-add-account.ts'
-import type { Encrypter } from '../../protocols/encrypter.ts'
 
 interface SutTypes {
     sut: DbAddAccount
