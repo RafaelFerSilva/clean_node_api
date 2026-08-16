@@ -1,8 +1,9 @@
-export const mongodbMemoryServerOptions = {
-    binary: {
-        version: '4.0.3',
-        skipMD5: true,
+export default {
+    mongodbMemoryServerOptions: {
+        binary: {
+            skipMD5: true,
+        },
+        autoStart: false,
+        instance: {},
     },
-    autoStart: false,
-    instance: {},
 }
