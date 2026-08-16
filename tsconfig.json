@@ -19,7 +19,8 @@
         "eslint.config.js",
         "jest.config.cjs",
         "jest-unit-config.js",
-        "jest-integration-config.js"
+        "jest-integration-config.js",
+        "jest-mongodb-config.js"
     ],
     "exclude": ["node_modules", "dist"]
 }
