@@ -1,6 +1,4 @@
-import express from 'express'
-
-const app = express()
+import app from './config/app.ts'
 
 app.listen(5050, () => {
     /* empty */
