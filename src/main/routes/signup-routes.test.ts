@@ -1,5 +1,5 @@
 import request from 'supertest'
-import app from '../config/app.js'
+import app from '../config/app.ts'
 import { MongoHelper } from '../../infra/db/mongodb/helpers/mongo-helper.ts'
 
 describe('Signup Routes', () => {

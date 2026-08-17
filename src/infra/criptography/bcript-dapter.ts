@@ -2,7 +2,11 @@ import type { Encrypter } from '../../data/protocols/encrypter.ts'
 import bcrypt from 'bcrypt'
 
 export class BcryptAdapter implements Encrypter {
-    constructor(private readonly salt: number) {}
+    private readonly salt: number
+
+    constructor(salt: number) {
+        this.salt = salt
+    }
 
     async encrypt(value: string): Promise<string> {
         return await bcrypt.hash(value, this.salt)
