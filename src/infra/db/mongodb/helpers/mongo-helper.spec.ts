@@ -9,10 +9,11 @@ describe('Mongo Helper', () => {
         await MongoHelper.disconnect()
     })
 
-    test('should throw if getting collection and not connected', async () => {
+    test('should reconnect if mongodb is down', async () => {
+        const accountCollection = await MongoHelper.getCollection('accounts')
+        expect(accountCollection).toBeTruthy()
         await MongoHelper.disconnect()
-        expect(() => {
-            MongoHelper.getCollection('accounts')
-        }).toThrow('Mongo client is not connected')
+        const accountCollection2 = await MongoHelper.getCollection('accounts')
+        expect(accountCollection2).toBeTruthy()
     })
 })

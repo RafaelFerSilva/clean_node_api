@@ -12,7 +12,7 @@ describe('Account Mongodb Repository', () => {
     })
 
     beforeEach(async () => {
-        const accountCollection = MongoHelper.getCollection('accounts')
+        const accountCollection = await MongoHelper.getCollection('accounts')
         await accountCollection.deleteMany({})
     })
 
@@ -39,10 +39,12 @@ describe('Account Mongodb Repository', () => {
             email: 'any_email@mail.com',
             password: 'any_password',
         }
-        jest.spyOn(MongoHelper, 'getCollection').mockReturnValueOnce({
-            insertOne: jest.fn().mockReturnValueOnce(Promise.resolve({ insertedId: 'any_id' })),
-            findOne: jest.fn().mockReturnValueOnce(Promise.resolve(null)),
-        } as unknown as Collection)
+        jest.spyOn(MongoHelper, 'getCollection').mockReturnValueOnce(
+            Promise.resolve({
+                insertOne: jest.fn().mockReturnValueOnce(Promise.resolve({ insertedId: 'any_id' })),
+                findOne: jest.fn().mockReturnValueOnce(Promise.resolve(null)),
+            } as unknown as Collection),
+        )
         const promise = sut.add(accountData)
         await expect(promise).rejects.toThrow('Account not found')
     })
