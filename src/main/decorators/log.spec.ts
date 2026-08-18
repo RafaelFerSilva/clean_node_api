@@ -5,18 +5,31 @@ import type {
 } from '../../presentation/controllers/signup/signup-protocols.ts'
 import { LogControllerDecorator } from './log.ts'
 
+const makeController = (): Controller => {
+    class ControllerStub implements Controller {
+        async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+            const httpResponse: HttpResponse = { statusCode: 200, body: 'any_body' }
+            return await Promise.resolve(httpResponse)
+        }
+    }
+    return new ControllerStub()
+}
+
+interface SutTypes {
+    sut: Controller
+    controllerStub: Controller
+}
+
+const makeSut = (): SutTypes => {
+    const controllerStub = makeController()
+    const sut = new LogControllerDecorator(controllerStub)
+    return { sut, controllerStub }
+}
+
 describe('LogControllerDecorator', () => {
     it('should return the same response as the controller', async () => {
-        class ControllerStub implements Controller {
-            async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-                const httpResponse: HttpResponse = { statusCode: 200, body: 'any_body' }
-                return await Promise.resolve(httpResponse)
-            }
-        }
-
-        const controller = new ControllerStub()
-        const handleSpy = jest.spyOn(controller, 'handle')
-        const sut = new LogControllerDecorator(controller)
+        const { sut, controllerStub } = makeSut()
+        const handleSpy = jest.spyOn(controllerStub, 'handle')
         const httpRequest: HttpRequest = {
             body: {
                 name: 'any_name',
