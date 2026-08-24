@@ -1,8 +1,7 @@
-import type { Autentication } from '../../../domain/usecases/autentication.ts'
 import { InvalidParamError } from '../../errors/invalid-param-error.ts'
 import { MissingParamError } from '../../errors/missing-param-error.ts'
 import { badRequest, serverError, unauthorized } from '../../helpers/http-helper.ts'
-import type { EmailValidator, HttpRequest } from './login-protocols.ts'
+import type { EmailValidator, HttpRequest, Autentication } from './login-protocols.ts'
 import { LoginController } from './login.ts'
 
 interface SutTypes {

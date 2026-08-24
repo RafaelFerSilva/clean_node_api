@@ -1,8 +1,13 @@
-import type { Autentication } from '../../../domain/usecases/autentication.ts'
 import { InvalidParamError } from '../../errors/invalid-param-error.ts'
 import { MissingParamError } from '../../errors/missing-param-error.ts'
 import { badRequest, serverError, unauthorized } from '../../helpers/http-helper.ts'
-import type { HttpRequest, HttpResponse, Controller, EmailValidator } from './login-protocols.ts'
+import type {
+    HttpRequest,
+    HttpResponse,
+    Controller,
+    EmailValidator,
+    Autentication,
+} from './login-protocols.ts'
 
 export class LoginController implements Controller {
     constructor(
