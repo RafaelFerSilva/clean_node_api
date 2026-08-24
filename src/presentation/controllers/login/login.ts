@@ -1,7 +1,7 @@
 import type { Autentication } from '../../../domain/usecases/autentication.ts'
 import { InvalidParamError } from '../../errors/invalid-param-error.ts'
 import { MissingParamError } from '../../errors/missing-param-error.ts'
-import { badRequest, serverError } from '../../helpers/http-helper.ts'
+import { badRequest, serverError, unauthorized } from '../../helpers/http-helper.ts'
 import type { HttpRequest, HttpResponse, Controller, EmailValidator } from './login-protocols.ts'
 
 export class LoginController implements Controller {
@@ -29,7 +29,10 @@ export class LoginController implements Controller {
                 return badRequest(new InvalidParamError('email'))
             }
 
-            await this.autentication.auth(email, password)
+            const accessToken = await this.autentication.auth(email, password)
+            if (!accessToken) {
+                return unauthorized()
+            }
         } catch (error) {
             return serverError(error as Error)
         }
