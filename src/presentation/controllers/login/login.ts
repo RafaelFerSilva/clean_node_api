@@ -1,6 +1,6 @@
 import { InvalidParamError } from '../../errors/invalid-param-error.ts'
 import { MissingParamError } from '../../errors/missing-param-error.ts'
-import { badRequest, serverError, unauthorized } from '../../helpers/http-helper.ts'
+import { badRequest, ok, serverError, unauthorized } from '../../helpers/http-helper.ts'
 import type {
     HttpRequest,
     HttpResponse,
@@ -38,6 +38,8 @@ export class LoginController implements Controller {
             if (!accessToken) {
                 return unauthorized()
             }
+
+            return ok({ accessToken })
         } catch (error) {
             return serverError(error as Error)
         }
