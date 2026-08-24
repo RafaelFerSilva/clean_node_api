@@ -1,10 +1,14 @@
+import type { Autentication } from '../../../domain/usecases/autentication.ts'
 import { InvalidParamError } from '../../errors/invalid-param-error.ts'
 import { MissingParamError } from '../../errors/missing-param-error.ts'
-import { badRequest, ok, serverError } from '../../helpers/http-helper.ts'
+import { badRequest, serverError } from '../../helpers/http-helper.ts'
 import type { HttpRequest, HttpResponse, Controller, EmailValidator } from './login-protocols.ts'
 
 export class LoginController implements Controller {
-    constructor(private readonly emailValidator: EmailValidator) {}
+    constructor(
+        private readonly emailValidator: EmailValidator,
+        private readonly autentication: Autentication,
+    ) {}
 
     async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
         try {
@@ -18,14 +22,14 @@ export class LoginController implements Controller {
                 }
             }
 
-            const { email } = httpRequest.body as { email: string }
+            const { email, password } = httpRequest.body as { email: string; password: string }
 
             const isValid = this.emailValidator.isValid(email)
             if (!isValid) {
                 return badRequest(new InvalidParamError('email'))
             }
 
-            return ok({})
+            await this.autentication.auth(email, password)
         } catch (error) {
             return serverError(error as Error)
         }
