@@ -7,7 +7,7 @@ import type {
     Validation,
 } from './signup-protocols.ts'
 import { badRequest, ok, serverError } from '../../helpers/http-helper.ts'
-import { MissingParamError, InvalidParamError } from '../../errors/index.ts'
+import { InvalidParamError } from '../../errors/index.ts'
 
 export class SignUpController implements Controller {
     private readonly emailValidator: EmailValidator
@@ -28,16 +28,10 @@ export class SignUpController implements Controller {
                 return badRequest(error)
             }
 
-            const requiredFields = ['name', 'email', 'password', 'passwordConfirmation']
-            const body = httpRequest.body as Record<string, unknown>
-
-            for (const field of requiredFields) {
-                if (!body[field]) {
-                    return badRequest(new MissingParamError(field))
-                }
-            }
-
-            const { name, email, password, passwordConfirmation } = body as Record<string, string>
+            const { name, email, password, passwordConfirmation } = httpRequest.body as Record<
+                string,
+                string
+            >
 
             if (password !== passwordConfirmation) {
                 return badRequest(new InvalidParamError('passwordConfirmation'))
