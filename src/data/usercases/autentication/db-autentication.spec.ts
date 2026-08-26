@@ -43,4 +43,24 @@ describe('DBAutenticationUseCase', () => {
 
         expect(loadByEmailSpy).toHaveBeenCalledWith('valid_email@mail.com')
     })
+
+    it('Should throw if loadAccountByEmailRepository throws', async () => {
+        const { sut, loadAccountByEmailRepositoryStub } = makeSut()
+        jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(
+            Promise.reject(new Error()),
+        )
+        const promise = sut.auth(makeFakeAutenticationParams())
+
+        await expect(promise).rejects.toThrow()
+    })
+
+    it('Should return an exception if loadAccountByEmailRepository returns null', async () => {
+        const { sut, loadAccountByEmailRepositoryStub } = makeSut()
+        jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(
+            Promise.resolve(null),
+        )
+        const promise = sut.auth(makeFakeAutenticationParams())
+
+        await expect(promise).rejects.toThrow('Invalid credentials')
+    })
 })
