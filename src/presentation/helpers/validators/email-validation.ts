@@ -1,6 +1,6 @@
 import { InvalidParamError } from '../../errors/invalid-param-error.ts'
 import type { EmailValidator } from '../../protocols/email-validator.ts'
-import type { Validation } from './validation.ts'
+import type { Validation } from '../../protocols/validation.ts'
 
 export class EmailValidation implements Validation {
     constructor(
