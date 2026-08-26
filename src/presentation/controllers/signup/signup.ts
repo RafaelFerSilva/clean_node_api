@@ -5,7 +5,7 @@ import type {
     AddAccount,
     Validation,
 } from './signup-protocols.ts'
-import { badRequest, ok, serverError } from '../../helpers/http-helper.ts'
+import { badRequest, ok, serverError } from '../../helpers/http/http-helper.ts'
 
 export class SignUpController implements Controller {
     private readonly addAccount: AddAccount

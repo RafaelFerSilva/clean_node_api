@@ -1,5 +1,5 @@
 import { MissingParamError } from '../../errors/missing-param-error.ts'
-import { badRequest, ok, serverError, unauthorized } from '../../helpers/http-helper.ts'
+import { badRequest, ok, serverError, unauthorized } from '../../helpers/http/http-helper.ts'
 import type { HttpRequest, Autentication, Validation } from './login-protocols.ts'
 import { LoginController } from './login.ts'
 

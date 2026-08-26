@@ -1,5 +1,5 @@
 import { serverError } from './http-helper.ts'
-import { ServerError } from '../errors/index.ts'
+import { ServerError } from '../../errors/index.ts'
 
 describe('Http Helper', () => {
     test('serverError should return ServerError with empty stack if error stack is undefined', () => {

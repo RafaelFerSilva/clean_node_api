@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError, unauthorized } from '../../helpers/http-helper.ts'
+import { badRequest, ok, serverError, unauthorized } from '../../helpers/http/http-helper.ts'
 import type {
     HttpRequest,
     HttpResponse,

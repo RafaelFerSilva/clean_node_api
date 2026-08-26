@@ -7,7 +7,7 @@ import type {
     HttpRequest,
     Validation,
 } from './signup-protocols.ts'
-import { badRequest, serverError, ok } from '../../../presentation/helpers/http-helper.ts'
+import { badRequest, serverError, ok } from '../../helpers/http/http-helper.ts'
 
 interface FakeRequest extends HttpRequest {
     body: {

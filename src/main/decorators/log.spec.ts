@@ -4,7 +4,7 @@ import type {
     HttpRequest,
     HttpResponse,
 } from '../../presentation/controllers/signup/signup-protocols.ts'
-import { ok, serverError } from '../../presentation/helpers/http-helper.ts'
+import { ok, serverError } from '../../presentation/helpers/http/http-helper.ts'
 import { LogControllerDecorator } from './log.ts'
 
 interface FakeRequest extends HttpRequest {
