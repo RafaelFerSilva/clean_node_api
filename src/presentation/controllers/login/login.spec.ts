@@ -1,6 +1,12 @@
 import { MissingParamError } from '../../errors/missing-param-error.ts'
 import { badRequest, ok, serverError, unauthorized } from '../../helpers/http/http-helper.ts'
-import type { HttpRequest, Autentication, Validation } from './login-protocols.ts'
+import type {
+    HttpRequest,
+    Autentication,
+    Validation,
+    AutenticationParams,
+    AutenticationModel,
+} from './login-protocols.ts'
 import { LoginController } from './login.ts'
 
 interface SutTypes {
@@ -20,9 +26,9 @@ const makeValidation = (): Validation => {
 
 const makeAutenticationStub = (): Autentication => {
     class AutenticationStub implements Autentication {
-        async auth(email: string, password: string): Promise<string | null> {
+        async auth(autentication: AutenticationParams): Promise<AutenticationModel | null> {
             await Promise.resolve()
-            return 'any_token'
+            return { accessToken: 'any_token' }
         }
     }
     return new AutenticationStub()
@@ -64,7 +70,10 @@ describe('Login Controller', () => {
         const { sut, autenticationStub } = makeSut()
         const authSpy = jest.spyOn(autenticationStub, 'auth')
         await sut.handle(mockRequest())
-        expect(authSpy).toHaveBeenCalledWith('any_email@email.com', 'any_password')
+        expect(authSpy).toHaveBeenCalledWith({
+            email: 'any_email@email.com',
+            password: 'any_password',
+        })
     })
 
     test('Should return 401 if invalid credentials are provided', async () => {
@@ -85,7 +94,9 @@ describe('Login Controller', () => {
 
     test('Should return 200 when valid credentials are provided', async () => {
         const { sut, autenticationStub } = makeSut()
-        jest.spyOn(autenticationStub, 'auth').mockReturnValueOnce(Promise.resolve('any_token'))
+        jest.spyOn(autenticationStub, 'auth').mockReturnValueOnce(
+            Promise.resolve({ accessToken: 'any_token' }),
+        )
         const httpResponse = await sut.handle(mockRequest())
         expect(httpResponse).toEqual(ok({ accessToken: 'any_token' }))
     })
