@@ -1,5 +1,5 @@
 import type { AccountModel } from '../add-account/db-add-account-protocols.ts'
-import type { LoadAccountByEmailRepository } from '../../protocols/load-account-by-email-repository.ts'
+import type { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository.ts'
 import type { Autentication, AutenticationParams } from '../../../domain/usecases/autentication.ts'
 import { DBAutenticationUseCase } from './db-autentication.ts'
 

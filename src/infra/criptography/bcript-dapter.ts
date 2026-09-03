@@ -1,4 +1,4 @@
-import type { Encrypter } from '../../data/protocols/encrypter.ts'
+import type { Encrypter } from '../../data/protocols/criptoghraphy/encrypter.ts'
 import bcrypt from 'bcrypt'
 
 export class BcryptAdapter implements Encrypter {

@@ -1,5 +1,5 @@
 import type { AccountModel } from '../../../../domain/models/account.ts'
-import type { AddAccountRepository } from '../../../../data/protocols/add-account-repository.ts'
+import type { AddAccountRepository } from '../../../../data/protocols/db/add-account-repository.ts'
 import type { AddAccountModel } from '../../../../domain/usecases/add-account.ts'
 import { MongoHelper } from '../helpers/mongo-helper.ts'
 

@@ -1,4 +1,4 @@
-import type { LogErrorRepository } from '../../../../data/protocols/log-error-repository.ts'
+import type { LogErrorRepository } from '../../../../data/protocols/db/log-error-repository.ts'
 import { MongoHelper } from '../helpers/mongo-helper.ts'
 
 export class LogMongoRepository implements LogErrorRepository {

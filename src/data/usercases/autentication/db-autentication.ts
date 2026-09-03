@@ -3,7 +3,7 @@ import type {
     AutenticationParams,
     AutenticationModel,
 } from '../../../domain/usecases/autentication.js'
-import type { LoadAccountByEmailRepository } from '../../protocols/load-account-by-email-repository.js'
+import type { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository.ts'
 
 export class DBAutenticationUseCase implements Autentication {
     constructor(private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository) {}
