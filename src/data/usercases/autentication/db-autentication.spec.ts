@@ -131,4 +131,11 @@ describe('DBAutenticationUseCase', () => {
 
         await expect(promise).rejects.toThrow()
     })
+
+    it('Should return an AutenticationModel on success', async () => {
+        const { sut } = makeSut()
+        const authenticationModel = await sut.auth(makeFakeAutenticationParams())
+
+        expect(authenticationModel).toEqual({ accessToken: 'any_token' })
+    })
 })
