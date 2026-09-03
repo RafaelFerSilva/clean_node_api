@@ -5,11 +5,13 @@ import type {
 } from '../../../domain/usecases/autentication.js'
 import type { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository.ts'
 import type { HashComparer } from '../../protocols/criptoghraphy/has-comparer.ts'
+import type { TokenGenerator } from '../../protocols/criptoghraphy/token-generator.ts'
 
 export class DBAutenticationUseCase implements Autentication {
     constructor(
         private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository,
         private readonly hashComparer: HashComparer,
+        private readonly tokenGenerator: TokenGenerator,
     ) {}
 
     async auth(autenticationParams: AutenticationParams): Promise<AutenticationModel | null> {
@@ -22,7 +24,7 @@ export class DBAutenticationUseCase implements Autentication {
                 account.password,
             )
             if (isValid) {
-                return null
+                await this.tokenGenerator.generate(account.id)
             }
         }
         return null
