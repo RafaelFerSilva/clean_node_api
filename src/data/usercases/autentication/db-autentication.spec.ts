@@ -54,13 +54,13 @@ describe('DBAutenticationUseCase', () => {
         await expect(promise).rejects.toThrow()
     })
 
-    it('Should return an exception if loadAccountByEmailRepository returns null', async () => {
+    it('Should return null if loadAccountByEmailRepository returns null', async () => {
         const { sut, loadAccountByEmailRepositoryStub } = makeSut()
         jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail').mockReturnValueOnce(
             Promise.resolve(null),
         )
-        const promise = sut.auth(makeFakeAutenticationParams())
+        const result = await sut.auth(makeFakeAutenticationParams())
 
-        await expect(promise).rejects.toThrow('Invalid credentials')
+        expect(result).toBeNull()
     })
 })
