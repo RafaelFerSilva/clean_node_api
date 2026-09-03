@@ -2,11 +2,11 @@ import type {
     Autentication,
     AutenticationParams,
     AutenticationModel,
-} from '../../../domain/usecases/autentication.js'
-import type { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository.ts'
-import type { HashComparer } from '../../protocols/criptoghraphy/has-comparer.ts'
-import type { TokenGenerator } from '../../protocols/criptoghraphy/token-generator.ts'
-import type { UpdateAccessTokenRepository } from '../../protocols/db/update-access-token-repository.ts'
+    LoadAccountByEmailRepository,
+    HashComparer,
+    TokenGenerator,
+    UpdateAccessTokenRepository,
+} from './db-autentication.protocols.ts'
 
 export class DBAutenticationUseCase implements Autentication {
     constructor(
