@@ -8,13 +8,8 @@ import type { LoadAccountByEmailRepository } from '../../protocols/db/load-accou
 export class DBAutenticationUseCase implements Autentication {
     constructor(private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository) {}
 
-    async auth(autenticationParams: AutenticationParams): Promise<AutenticationModel> {
-        const account = await this.loadAccountByEmailRepository.loadByEmail(
-            autenticationParams.email,
-        )
-        if (!account) {
-            throw new Error('Invalid credentials')
-        }
-        return { accessToken: 'valid_token' }
+    async auth(autenticationParams: AutenticationParams): Promise<AutenticationModel | null> {
+        await this.loadAccountByEmailRepository.loadByEmail(autenticationParams.email)
+        return null
     }
 }
