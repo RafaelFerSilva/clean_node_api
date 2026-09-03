@@ -24,7 +24,8 @@ export class DBAutenticationUseCase implements Autentication {
                 account.password,
             )
             if (isValid) {
-                await this.tokenGenerator.generate(account.id)
+                const accessToken = await this.tokenGenerator.generate(account.id)
+                return { accessToken }
             }
         }
         return null
