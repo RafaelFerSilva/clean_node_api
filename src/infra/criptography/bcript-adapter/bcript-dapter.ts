@@ -1,4 +1,4 @@
-import type { Hasher } from '../../data/protocols/criptoghraphy/hasher.ts'
+import type { Hasher } from '../../../data/protocols/criptoghraphy/hasher.ts'
 import bcrypt from 'bcrypt'
 
 export class BcryptAdapter implements Hasher {
