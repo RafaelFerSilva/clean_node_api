@@ -8,6 +8,13 @@ export default [
     {
         ...love,
         files: ['**/*.js', '**/*.cjs', '**/*.ts', '**/*.tsx'],
+        languageOptions: {
+            ...love.languageOptions,
+            parserOptions: {
+                ...love.languageOptions.parserOptions,
+                tsconfigRootDir: import.meta.dirname,
+            },
+        },
         rules: {
             ...love.rules,
             '@typescript-eslint/strict-boolean-expressions': 'off',

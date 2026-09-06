@@ -12,7 +12,7 @@
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
         "isolatedModules": true,
-        "types": ["jest", "node"]
+        "types": ["jest", "node", "jsonwebtoken"]
     },
     "include": [
         "src",
