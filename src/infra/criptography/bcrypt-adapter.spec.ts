@@ -19,19 +19,19 @@ const makeSut = (): SutTypes => {
 describe('BcryptAdapter', () => {
     test('Should call bcrypt with correct values', async () => {
         const { salt, sut } = makeSut()
-        await sut.encrypt('any_value')
+        await sut.hash('any_value')
         expect(bcrypt.hash).toHaveBeenCalledWith('any_value', salt)
     })
 
     test('Should return a hash on success', async () => {
         const { sut } = makeSut()
-        const hash = await sut.encrypt('any_value')
+        const hash = await sut.hash('any_value')
         expect(hash).toBe('any_hash')
     })
 
     test('Should throw if bcrypt throws', async () => {
         const { sut } = makeSut()
         ;(jest.spyOn(bcrypt, 'hash') as jest.Mock).mockReturnValueOnce(Promise.reject(new Error()))
-        await expect(sut.encrypt('any_value')).rejects.toThrow()
+        await expect(sut.hash('any_value')).rejects.toThrow()
     })
 })
