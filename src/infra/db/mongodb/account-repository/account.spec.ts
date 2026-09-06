@@ -18,7 +18,7 @@ describe('Account Mongodb Repository', () => {
 
     const makeSut = (): AccountMongoRepository => new AccountMongoRepository()
 
-    test('should return an account on success', async () => {
+    test('should return an account on add success', async () => {
         const sut = makeSut()
         const accountData = {
             name: 'any_name',
@@ -32,7 +32,8 @@ describe('Account Mongodb Repository', () => {
         expect(account.email).toBe(accountData.email)
         expect(account.password).toBe(accountData.password)
     })
-    test('should throw if account is not found after insert', async () => {
+
+    test('should throw if account is not found after add success', async () => {
         const sut = makeSut()
         const accountData = {
             name: 'any_name',
@@ -47,5 +48,27 @@ describe('Account Mongodb Repository', () => {
         )
         const promise = sut.add(accountData)
         await expect(promise).rejects.toThrow('Account not found')
+    })
+
+    test('should return an account on load by email success', async () => {
+        const sut = makeSut()
+        const accountData = {
+            name: 'any_name',
+            email: 'any_email@mail.com',
+            password: 'any_password',
+        }
+        await sut.add(accountData)
+        const account = await sut.loadByEmail('any_email@mail.com')
+        expect(account).toBeTruthy()
+        expect(account?.id).toBeTruthy()
+        expect(account?.name).toBe(accountData.name)
+        expect(account?.email).toBe(accountData.email)
+        expect(account?.password).toBe(accountData.password)
+    })
+
+    test('should return null if account is not found on load by email', async () => {
+        const sut = makeSut()
+        const account = await sut.loadByEmail('any_email@mail.com')
+        expect(account).toBeFalsy()
     })
 })
