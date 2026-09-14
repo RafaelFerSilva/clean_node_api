@@ -24,6 +24,12 @@ export default [
         },
     },
     {
+        files: ['src/main/server.ts'],
+        rules: {
+            'no-console': 'off',
+        },
+    },
+    {
         files: ['**/*.spec.ts', '**/*.test.ts'],
         languageOptions: {
             globals: {
