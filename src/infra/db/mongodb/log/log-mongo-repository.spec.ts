@@ -1,5 +1,5 @@
 import { MongoHelper } from '../helpers/mongo-helper.ts'
-import { LogMongoRepository } from './logs.ts'
+import { LogMongoRepository } from './logs-mongo-repository.ts'
 
 describe('Log Mongo Repository', () => {
     beforeAll(async () => {

@@ -1,4 +1,4 @@
-import { makeLoginValidation } from './login-validation.ts'
+import { makeLoginValidation } from './login-validation-factory.ts'
 import {
     ValidationComposite,
     RequiredFieldValidation,

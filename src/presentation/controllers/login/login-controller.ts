@@ -5,7 +5,7 @@ import type {
     Controller,
     Validation,
     Autentication,
-} from './login-protocols.ts'
+} from './login-controller-protocols.ts'
 
 export class LoginController implements Controller {
     constructor(

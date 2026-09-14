@@ -1,4 +1,4 @@
-import { SignUpController } from './signup.ts'
+import { SignUpController } from './signup-controller.ts'
 import { MissingParamError } from '../../errors/index.ts'
 import type {
     AddAccount,
@@ -6,7 +6,7 @@ import type {
     AccountModel,
     HttpRequest,
     Validation,
-} from './signup-protocols.ts'
+} from './signup-controller-protocols.ts'
 import { badRequest, serverError, ok } from '../../helpers/http/http-helper.ts'
 
 interface FakeRequest extends HttpRequest {

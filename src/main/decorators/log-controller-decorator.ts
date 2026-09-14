@@ -1,9 +1,9 @@
-import type { LogErrorRepository } from '../../data/protocols/db/log-error-repository.ts'
+import type { LogErrorRepository } from '../../data/protocols/db/log/log-error-repository.ts'
 import type {
     Controller,
     HttpRequest,
     HttpResponse,
-} from '../../presentation/controllers/signup/signup-protocols.ts'
+} from '../../presentation/controllers/signup/signup-controller-protocols.ts'
 
 export class LogControllerDecorator implements Controller {
     constructor(

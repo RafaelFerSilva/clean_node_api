@@ -6,8 +6,8 @@ import type {
     Validation,
     AutenticationParams,
     AutenticationModel,
-} from './login-protocols.ts'
-import { LoginController } from './login.ts'
+} from './login-controller-protocols.ts'
+import { LoginController } from './login-controller.ts'
 
 interface SutTypes {
     sut: LoginController

@@ -1,11 +1,11 @@
-import { SignUpController } from '../../../presentation/controllers/signup/signup.ts'
+import { SignUpController } from '../../../presentation/controllers/signup/signup-controller.ts'
 import { DbAddAccount } from '../../../data/usercases/add-account/db-add-account.ts'
 import { BcryptAdapter } from '../../../infra/criptography/bcript-adapter/bcript-dapter.ts'
-import { AccountMongoRepository } from '../../../infra/db/mongodb/account-repository/account.ts'
-import type { Controller } from '../../../presentation/controllers/signup/signup-protocols.ts'
-import { LogControllerDecorator } from '../../decorators/log.ts'
-import { LogMongoRepository } from '../../../infra/db/mongodb/log-repository/logs.ts'
-import { makeSignUpValidation } from './signup-validation.ts'
+import { AccountMongoRepository } from '../../../infra/db/mongodb/account/account-mongo-repository.ts'
+import type { Controller } from '../../../presentation/controllers/signup/signup-controller-protocols.ts'
+import { LogControllerDecorator } from '../../decorators/log-controller-decorator.ts'
+import { LogMongoRepository } from '../../../infra/db/mongodb/log/logs-mongo-repository.ts'
+import { makeSignUpValidation } from './signup-validation-factory.ts'
 
 export const makeSignUpController = (): Controller => {
     const salt = 12

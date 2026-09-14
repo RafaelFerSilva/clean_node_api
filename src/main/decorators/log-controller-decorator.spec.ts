@@ -1,11 +1,11 @@
-import type { LogErrorRepository } from '../../data/protocols/db/log-error-repository.ts'
+import type { LogErrorRepository } from '../../data/protocols/db/log/log-error-repository.ts'
 import type {
     Controller,
     HttpRequest,
     HttpResponse,
-} from '../../presentation/controllers/signup/signup-protocols.ts'
+} from '../../presentation/controllers/signup/signup-controller-protocols.ts'
 import { ok, serverError } from '../../presentation/helpers/http/http-helper.ts'
-import { LogControllerDecorator } from './log.ts'
+import { LogControllerDecorator } from './log-controller-decorator.ts'
 
 interface FakeRequest extends HttpRequest {
     body: {

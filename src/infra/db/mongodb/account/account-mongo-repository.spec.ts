@@ -1,4 +1,4 @@
-import { AccountMongoRepository } from './account.ts'
+import { AccountMongoRepository } from './account-mongo-repository.ts'
 import { MongoHelper } from '../helpers/mongo-helper.ts'
 import type { Collection } from 'mongodb'
 
@@ -70,5 +70,20 @@ describe('Account Mongodb Repository', () => {
         const sut = makeSut()
         const account = await sut.loadByEmail('any_email@mail.com')
         expect(account).toBeFalsy()
+    })
+
+    test('should update the account accessToken on updateAccesToken success', async () => {
+        const sut = makeSut()
+        const accountData = {
+            name: 'any_name',
+            email: 'any_email@mail.com',
+            password: 'any_password',
+        }
+        const accountCollection = await MongoHelper.getCollection('accounts')
+        const result = await accountCollection.insertOne(accountData)
+        await sut.updateAccessToken(result.insertedId.toString(), 'any_token')
+        const account = await accountCollection.findOne({ _id: result.insertedId })
+        expect(account).toBeTruthy()
+        expect(account?.accessToken).toBe('any_token')
     })
 })

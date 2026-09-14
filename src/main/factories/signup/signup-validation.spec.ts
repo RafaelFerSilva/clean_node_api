@@ -1,4 +1,4 @@
-import { makeSignUpValidation } from './signup-validation.ts'
+import { makeSignUpValidation } from './signup-validation-factory.ts'
 import {
     ValidationComposite,
     RequiredFieldValidation,
