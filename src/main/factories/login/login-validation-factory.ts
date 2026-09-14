@@ -4,7 +4,7 @@ import {
     EmailValidation,
 } from '../../../presentation/helpers/validators/index.ts'
 import type { Validation } from '../../../presentation/protocols/validation.ts'
-import { EmailValidatorAdapter } from '../../../utils/email-validator-adapter.ts'
+import { EmailValidatorAdapter } from '../../../main/adapters/validators/email-validator-adapter.ts'
 
 export const makeLoginValidation = (): ValidationComposite => {
     const validations: Validation[] = []
