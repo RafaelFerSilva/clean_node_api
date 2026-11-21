@@ -1,4 +1,4 @@
-import type { Validation } from '../../protocols/validation.ts'
+import type { Validation } from '../../presentation/protocols/validation.ts'
 
 export class ValidationComposite implements Validation {
     constructor(private readonly validations: Validation[]) {}

@@ -1,5 +1,5 @@
-import { InvalidParamError } from '../../errors/invalid-param-error.ts'
-import type { Validation } from '../../protocols/validation.ts'
+import { InvalidParamError } from '../../presentation/errors/invalid-param-error.ts'
+import type { Validation } from '../../presentation/protocols/validation.ts'
 
 export class CompareFieldsValidation implements Validation {
     constructor(

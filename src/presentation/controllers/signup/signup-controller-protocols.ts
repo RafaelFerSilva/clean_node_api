@@ -1,6 +1,4 @@
-export type * from '../../protocols/validation.ts'
 export type * from '../../protocols/index.ts'
-export type * from '../../protocols/email-validator.ts'
 export type * from '../../../domain/usecases/add-account.ts'
 export type * from '../../../domain/models/account.ts'
 export type * from '../../../domain/usecases/autentication.ts'

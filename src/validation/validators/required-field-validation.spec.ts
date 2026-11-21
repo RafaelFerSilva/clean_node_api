@@ -1,4 +1,4 @@
-import { MissingParamError } from '../../errors/index.ts'
+import { MissingParamError } from '../../presentation/errors/index.ts'
 import { RequiredFieldValidation } from './required-field-validation.ts'
 
 describe('Required Field Validation', () => {

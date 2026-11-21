@@ -1,4 +1,4 @@
-import { InvalidParamError } from '../../errors/invalid-param-error.ts'
+import { InvalidParamError } from '../../presentation/errors/invalid-param-error.ts'
 import { CompareFieldsValidation } from './compare-fields-validation.ts'
 
 describe('Compare Fields Validation', () => {

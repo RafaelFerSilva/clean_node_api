@@ -1,5 +1,5 @@
-import type { EmailValidator } from '../../protocols/email-validator.ts'
-import { InvalidParamError } from '../../errors/index.ts'
+import type { EmailValidator } from '../protocols/email-validator.ts'
+import { InvalidParamError } from '../../presentation/errors/index.ts'
 import { EmailValidation } from './email-validation.ts'
 
 interface SutTypes {
