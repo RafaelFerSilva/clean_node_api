@@ -6,7 +6,8 @@ import type {
     Validation,
     Autentication,
 } from './signup-controller-protocols.ts'
-import { badRequest, ok, serverError } from '../../helpers/http/http-helper.ts'
+import { badRequest, forbidden, ok, serverError } from '../../helpers/http/http-helper.ts'
+import { EmailInUseError } from '../../errors/email-in-use-error.ts'
 
 export class SignUpController implements Controller {
     private readonly addAccount: AddAccount
@@ -29,7 +30,11 @@ export class SignUpController implements Controller {
 
             const { name, email, password } = httpRequest.body as Record<string, string>
 
-            await this.addAccount.add({ name, email, password })
+            const account = await this.addAccount.add({ name, email, password })
+
+            if (!account) {
+                return forbidden(new EmailInUseError())
+            }
 
             const accessToken = await this.autentication.auth({ email, password })
 
