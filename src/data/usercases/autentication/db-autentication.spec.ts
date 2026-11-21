@@ -12,12 +12,12 @@ import { DBAutenticationUseCase } from './db-autentication.ts'
 const makeFakeAccount = (): AccountModel => ({
     id: 'valid_id',
     name: 'valid_name',
-    email: 'valid_email@mail.com',
+    email: 'valid_email@email.com',
     password: 'hashed_password',
 })
 
 const makeFakeAutenticationParams = (): AutenticationParams => ({
-    email: 'valid_email@mail.com',
+    email: 'valid_email@email.com',
     password: 'any_password',
 })
 
@@ -91,7 +91,7 @@ describe('DBAutenticationUseCase', () => {
         const loadByEmailSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
         await sut.auth(makeFakeAutenticationParams())
 
-        expect(loadByEmailSpy).toHaveBeenCalledWith('valid_email@mail.com')
+        expect(loadByEmailSpy).toHaveBeenCalledWith('valid_email@email.com')
     })
 
     it('Should throw if loadAccountByEmailRepository throws', async () => {

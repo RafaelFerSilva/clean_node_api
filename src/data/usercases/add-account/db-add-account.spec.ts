@@ -3,6 +3,7 @@ import type {
     AddAccountModel,
     Hasher,
     AddAccountRepository,
+    LoadAccountByEmailRepository,
 } from './db-add-account-protocols.ts'
 import { DbAddAccount } from './db-add-account.ts'
 
@@ -18,6 +19,15 @@ const makeFakeAccount = (): AccountModel => ({
     email: 'valid_email@email.com',
     password: 'hashed_password',
 })
+
+const makeLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
+    class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
+        async loadByEmail(email: string): Promise<AccountModel | null> {
+            return await Promise.resolve(makeFakeAccount())
+        }
+    }
+    return new LoadAccountByEmailRepositoryStub()
+}
 
 const makeHasher = (): Hasher => {
     class HasherStub implements Hasher {
@@ -41,16 +51,23 @@ interface SutTypes {
     sut: DbAddAccount
     hasherStub: Hasher
     addAccountRepositoryStub: AddAccountRepository
+    loadAccountByEmailRepositoryStub: LoadAccountByEmailRepository
 }
 
 const makeSut = (): SutTypes => {
     const hasherStub = makeHasher()
     const addAccountRepositoryStub = makeAddAccountRepository()
-    const sut = new DbAddAccount(hasherStub, addAccountRepositoryStub)
+    const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepository()
+    const sut = new DbAddAccount(
+        hasherStub,
+        addAccountRepositoryStub,
+        loadAccountByEmailRepositoryStub,
+    )
     return {
         sut,
         hasherStub,
         addAccountRepositoryStub,
+        loadAccountByEmailRepositoryStub,
     }
 }
 
@@ -89,5 +106,13 @@ describe('DbAddAccount Usecase', () => {
         const { sut } = makeSut()
         const account = await sut.add(makeFakeAccountData())
         expect(account).toEqual(makeFakeAccount())
+    })
+
+    test('Should call loadAccountByEmailRepository with correct email', async () => {
+        const { sut, loadAccountByEmailRepositoryStub } = makeSut()
+        const loadByEmailSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
+        await sut.add(makeFakeAccountData())
+
+        expect(loadByEmailSpy).toHaveBeenCalledWith('valid_email@email.com')
     })
 })
