@@ -1,5 +1,5 @@
 import { SignUpController } from './signup-controller.ts'
-import { MissingParamError } from '../../errors/index.ts'
+import { MissingParamError, EmailInUseError } from '../../errors/index.ts'
 import type {
     AddAccount,
     AddAccountModel,
@@ -10,7 +10,7 @@ import type {
     AutenticationModel,
     AutenticationParams,
 } from './signup-controller-protocols.ts'
-import { badRequest, serverError, ok } from '../../helpers/http/http-helper.ts'
+import { badRequest, serverError, ok, forbidden } from '../../helpers/http/http-helper.ts'
 
 interface FakeRequest extends HttpRequest {
     body: {
@@ -154,5 +154,12 @@ describe('SignUp Controller', () => {
         })
         const httpResponse = await sut.handle(mockRequest())
         expect(httpResponse).toEqual(serverError(new Error()))
+    })
+
+    test('Should return 403 AddAccount return null', async () => {
+        const { sut, addAccountStub } = makeSut()
+        jest.spyOn(addAccountStub, 'add').mockResolvedValueOnce(null)
+        const httpResponse = await sut.handle(makeFakeRequest())
+        expect(httpResponse).toEqual(forbidden(new EmailInUseError()))
     })
 })
