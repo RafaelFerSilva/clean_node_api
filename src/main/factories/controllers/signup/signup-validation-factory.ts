@@ -3,9 +3,9 @@ import {
     RequiredFieldValidation,
     CompareFieldsValidation,
     EmailValidation,
-} from '../../../presentation/helpers/validators/index.ts'
-import type { Validation } from '../../../presentation/protocols/validation.ts'
-import { EmailValidatorAdapter } from '../../../main/adapters/validators/email-validator-adapter.ts'
+} from '../../../../presentation/helpers/validators/index.ts'
+import type { Validation } from '../../../../presentation/protocols/validation.ts'
+import { EmailValidatorAdapter } from '../../../adapters/validators/email-validator-adapter.ts'
 
 export const makeSignUpValidation = (): ValidationComposite => {
     const validations: Validation[] = []
